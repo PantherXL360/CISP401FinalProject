@@ -10,4 +10,10 @@ public class Main {
         //call the ending to display results
         // add repeat option
     }
+    public void checkDatabase(){
+        //check database
+    }
+    public void testDatabase(){
+        //fill with full servant list if database is not located
+    }
 }
