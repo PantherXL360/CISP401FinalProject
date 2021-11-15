@@ -1,10 +1,10 @@
 package com.company.models;
 
-public class Character {
+public class Characters {
     private String character;
 
-    public Character(String character) {
-        this.character = character;
+    public Characters() {
+        //use set character rolled
     }
 
     public String getCharacter() {
