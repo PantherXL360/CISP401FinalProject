@@ -5,10 +5,13 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class SetCharacterRolled{
-    private int randomRoll;
     private String characterResult;
-    public void RandomSet(int roll)
+    public  SetCharacterRolled(){
+        characterResult="Test";
+    }
+    public void RandomSet()
     {
+        System.out.println("Entered Code:getCharacter");
         String rarity = "";
         Random randomRoll=new Random();
         int theRoll = randomRoll.nextInt(100) + 1;
@@ -38,32 +41,42 @@ public class SetCharacterRolled{
         GetCharacterFromList(rarity);
     }
     public void GetCharacterFromList(String rarity){
-        String dbName="Full_Servant_List";
+        String dbName="FullServantList.db";
         String url = "jdbc:sqlite:C:/sqlite/db/" + dbName;
+        System.out.println("Entered Code:GetCharacterFromList");
         try (Connection conn = DriverManager.getConnection(url)){
             if (conn != null){
                TestDatabase testDB=new TestDatabase(dbName);
-               testDB.CreateTestDatabase();
+               testDB.CheckDatabase();
             }
-            String sql="SELECT name, rarity FROM FullServantList WHERE rarity =(rarity) ";
-            Statement statement = conn.createStatement();
-            ResultSet pool=statement.executeQuery(sql);
-            ArrayList<String>randomPool=new ArrayList<>();
-            while (pool.next()){
-                String name=pool.getString("name");
-                String rarityS=pool.getString("rarity");
-                String entry=name + " " + rarityS;
-                randomPool.add(entry);
+            String sql="SELECT name, rarity FROM FullServantList WHERE rarity = '"+ rarity+ "'";
+            if (conn != null){
+                Statement statement = conn.createStatement();
+                if (statement != null) {
+                    ResultSet pool = statement.executeQuery(sql);
+                    ArrayList<String> randomPool = new ArrayList<>();
+                    if (pool != null){
+                        while (pool.next()){
+                            String name = pool.getString("name");
+                            String rarityS = pool.getString("rarity");
+                            String entry = name + " " + rarityS;
+                            randomPool.add(entry);
+                        }
+                        String[] fullRandomArray;
+                        fullRandomArray = randomPool.toArray(new String[randomPool.size()]);
+                        int rand = new Random().nextInt(fullRandomArray.length);
+                        setCharacterResult(fullRandomArray[rand]);
+                    }
+                }
             }
-            String []fullRandomArray=randomPool.toArray(new String[randomPool.size()]);
-            int rand = new Random().nextInt(fullRandomArray.length);
-            setCharacterResult(fullRandomArray[rand]);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+            System.out.println("Entered Code:GetCharacterFromList");
         }
     }
 
     public String getCharacterResult() {
+        RandomSet();
         return characterResult;
     }
 

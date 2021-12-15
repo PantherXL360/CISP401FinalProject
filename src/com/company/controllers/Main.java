@@ -1,13 +1,18 @@
 package com.company.controllers;
 
+
+import com.company.view.SetRoll;
+import com.company.view.StartingMessage;
+
 public class Main {
 
     public static void main(String[] args) {
-	// call the start game
-        //call the set roll to set how many rolls
-        //call the set servant
-        //call the gacha part
-        //call the ending to display results
-        // add repeat option
+        StartingMessage startGame=new StartingMessage();
+        SetRoll startRoll=new SetRoll();
+        RollCharacter gacha=new RollCharacter();
+        startGame.Message();
+        int userRoll=startRoll.UserRoll();
+        gacha.RollAmount(userRoll);
+
     }
 }
