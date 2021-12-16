@@ -39,20 +39,15 @@ public class TestDatabase {
     public void CreateTestDatabase(){
         try (Connection conn = DriverManager.getConnection(url)) {
             if (conn != null) {
-                System.out.println("CreateTestDatabase");
                 DatabaseMetaData meta = conn.getMetaData();
-                System.out.println("The driver name is " + meta.getDriverName());
-                System.out.println("A new database has been created.");
             }
 
         } catch (SQLException throwables) {
-            System.out.println("CreateTestDatabase2");
             throwables.printStackTrace();
             System.out.println(throwables.getMessage());
         }
     }
     public void addTables(){
-        System.out.println("addTables");
         String sql = "CREATE TABLE IF NOT EXISTS FullServantList (\n"
                 + "	id integer PRIMARY KEY,\n"
                 + " name text NOT NULL,\n"
@@ -63,7 +58,6 @@ public class TestDatabase {
             statement.execute(sql);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
-            System.out.println("Error Location");
         }
     }
     public void addData(String name,String rarity){

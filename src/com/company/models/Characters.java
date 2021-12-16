@@ -10,13 +10,11 @@ public class Characters {
     }
 
     public String getCharacter() {
-        System.out.println("Entered Code:getCharacter");
         setCharacter();
         return character;
     }
 
     public void setCharacter() {
-        System.out.println("Entered Code:SetCharacter");
         SetCharacterRolled set = new SetCharacterRolled();
         character=set.getCharacterResult();
     }

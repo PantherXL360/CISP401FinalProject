@@ -11,7 +11,6 @@ public class SetCharacterRolled{
     }
     public void RandomSet()
     {
-        System.out.println("Entered Code:getCharacter");
         String rarity = "";
         Random randomRoll=new Random();
         int theRoll = randomRoll.nextInt(100) + 1;
@@ -43,7 +42,6 @@ public class SetCharacterRolled{
     public void GetCharacterFromList(String rarity){
         String dbName="FullServantList.db";
         String url = "jdbc:sqlite:C:/sqlite/db/" + dbName;
-        System.out.println("Entered Code:GetCharacterFromList");
         try (Connection conn = DriverManager.getConnection(url)){
             if (conn != null){
                TestDatabase testDB=new TestDatabase(dbName);
@@ -71,7 +69,6 @@ public class SetCharacterRolled{
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
-            System.out.println("Entered Code:GetCharacterFromList");
         }
     }
 
